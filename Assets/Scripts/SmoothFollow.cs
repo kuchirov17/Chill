@@ -14,7 +14,6 @@ public class SmoothFollow : MonoBehaviour
 
     private Vector3 velocity = Vector3.zero;
 
-    // Update is called once per frame
     void FixedUpdate()
     {
 
@@ -28,7 +27,7 @@ public class SmoothFollow : MonoBehaviour
         transform.position = Vector3.SmoothDamp(transform.position, newPos, ref velocity, smoothness);
 
         Quaternion targetRot = Quaternion.LookRotation(-transform.position.normalized, target.up);
-        //transform.rotation = targetRot;
+       // transform.rotation = targetRot;
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRot, Time.deltaTime * rotationSmoothness);
 
     }
