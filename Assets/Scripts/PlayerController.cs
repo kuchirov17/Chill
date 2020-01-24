@@ -8,8 +8,9 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 10f;
     public float rotationSpeed = 10f;
 
-    private float rotation;
+    public float rotation;
     private Rigidbody rb;
+
 
     void Start()
     {
@@ -18,7 +19,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        rotation = Input.GetAxisRaw("Horizontal");
+        //rotation = Input.GetAxisRaw("Horizontal");
     }
 
     void FixedUpdate()
