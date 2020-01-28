@@ -1,0 +1,68 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+public class PlayerCollision : MonoBehaviour
+{
+    public GameObject scoreTextObj;
+    private Text scoreText;
+    public GameObject player;
+    public GameObject cam;
+    public TrailRenderer tr;
+    public GameObject loseText;
+    public GameObject SwipeField;
+
+    int score = 0;
+
+    private void Start()
+    {
+        scoreText = scoreTextObj.GetComponent<Text>();
+    }
+
+    private void Update()
+    {
+        if (tr.time <= 0)
+        {
+            StartCoroutine(reloadGame());
+            SwipeField.SetActive(false);     
+        }
+        if (score < 0)
+        {
+            score = 0;
+            scoreText.text = score.ToString();
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "ball")
+        {
+            collision.gameObject.SetActive(false);
+            tr.time += 0.05f;
+            score++;
+            scoreText.text = score.ToString();
+            player.GetComponent<PlayerController>().moveSpeed += 0.1f;
+        }
+
+        if (collision.gameObject.tag == "enemy")
+        {
+            collision.gameObject.SetActive(false);
+            tr.time -= 0.05f;
+            score--;
+            scoreText.text = score.ToString();
+            player.GetComponent<PlayerController>().moveSpeed-=0.1f;
+        }
+    }
+
+    IEnumerator reloadGame()
+    {
+        loseText.SetActive(true);
+        for(byte opasity = 0; opasity != 255; opasity++)
+        {
+            yield return new WaitForSeconds(0.01f);
+            loseText.GetComponent<Text>().color = new Color32(0, 0, 0, opasity);
+        }
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+}
