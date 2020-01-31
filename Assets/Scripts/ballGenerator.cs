@@ -8,18 +8,24 @@ public class ballGenerator : MonoBehaviour
     public GameObject prefab;
     public float time;
 
-    public SphereCollider col;
-    public int index;
+    public GameObject player;
     Vector3 instancePos;
+
+    public GameObject transforms;
+    public transformsGenerator generatorOfTransforms;
     private void Start()
     {
-        col = surface.GetComponent<SphereCollider>();
+        generatorOfTransforms = transforms.GetComponent<transformsGenerator>();
         StartCoroutine(generator());
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        instancePos = Random.onUnitSphere *5.2f* col.radius + surface.transform.position; 
+        GameObject pos = generatorOfTransforms.transforms[Random.Range(0, 99)];
+        if (pos.GetComponent<Transforms>().isVisible == false)
+        {
+            instancePos = pos.transform.position;
+        }
     }
 
 
@@ -27,7 +33,6 @@ public class ballGenerator : MonoBehaviour
      {
          while (true)
          {
-            
             yield return new WaitForSeconds(time);
             Instantiate(prefab, instancePos, Quaternion.identity);
         }

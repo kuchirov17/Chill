@@ -13,6 +13,11 @@ public class PlayerCollision : MonoBehaviour
     public GameObject loseText;
     public GameObject SwipeField;
 
+    [SerializeField] 
+    private Material green;
+    [SerializeField]
+    private Material red;
+
     int score = 0;
 
     private void Start()
@@ -39,16 +44,17 @@ public class PlayerCollision : MonoBehaviour
         if (collision.gameObject.tag == "ball")
         {
             collision.gameObject.SetActive(false);
-            tr.time += 0.05f;
+            tr.material = green;
             score++;
             scoreText.text = score.ToString();
             player.GetComponent<PlayerController>().moveSpeed += 0.1f;
+
         }
 
         if (collision.gameObject.tag == "enemy")
         {
             collision.gameObject.SetActive(false);
-            tr.time -= 0.05f;
+            tr.material = red;
             score--;
             scoreText.text = score.ToString();
             player.GetComponent<PlayerController>().moveSpeed-=0.1f;
