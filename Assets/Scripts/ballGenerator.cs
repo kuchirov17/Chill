@@ -8,14 +8,12 @@ public class ballGenerator : MonoBehaviour
     public GameObject prefab;
     public float time;
 
-    public GameObject player;
     Vector3 instancePos;
 
-    public GameObject transforms;
+  
     public transformsGenerator generatorOfTransforms;
     private void Start()
     {
-        generatorOfTransforms = transforms.GetComponent<transformsGenerator>();
         StartCoroutine(generator());
     }
 

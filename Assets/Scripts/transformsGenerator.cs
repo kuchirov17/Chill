@@ -11,12 +11,8 @@ public class transformsGenerator : MonoBehaviour
     {
         for(int i = 0; i < 100; i++)
         {
-            transforms[i] = Instantiate(prefab, Random.onUnitSphere *5.1f*planet.GetComponent<SphereCollider>().radius+planet.transform.position, Quaternion.identity) as GameObject;
+            transforms[i] = Instantiate(prefab, Random.onUnitSphere *5.3f*planet.GetComponent<SphereCollider>().radius+planet.transform.position, Quaternion.identity) as GameObject;
         }
 
-    }
-    void Update()
-    {
-        
     }
 }

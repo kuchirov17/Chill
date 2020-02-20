@@ -9,14 +9,14 @@ public class PlayerCollision : MonoBehaviour
     private Text scoreText;
     public GameObject player;
     public GameObject cam;
-    public TrailRenderer tr;
     public GameObject loseText;
     public GameObject SwipeField;
 
-    [SerializeField] 
-    private Material green;
-    [SerializeField]
-    private Material red;
+    public Paint paintObj;
+    public GameObject greenSplashObject;
+    public GameObject redSplashObject;
+    public float timeForGreen = 0;
+    public float timeForRed = 0;
 
     int score = 0;
 
@@ -25,40 +25,62 @@ public class PlayerCollision : MonoBehaviour
         scoreText = scoreTextObj.GetComponent<Text>();
     }
 
+    public bool canPaint;
+    public bool red;
+    public bool green;
     private void Update()
     {
-        if (tr.time <= 0)
-        {
-            StartCoroutine(reloadGame());
-            SwipeField.SetActive(false);     
-        }
         if (score < 0)
         {
             score = 0;
             scoreText.text = score.ToString();
         }
+
+
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.tag == "ball")
+        if (collision.gameObject.tag=="ball")
         {
+            //StopAllCoroutines();
+            //StartCoroutine(paintingTimeForGreen());
             collision.gameObject.SetActive(false);
-            tr.material = green;
             score++;
             scoreText.text = score.ToString();
-            player.GetComponent<PlayerController>().moveSpeed += 0.1f;
-
         }
 
         if (collision.gameObject.tag == "enemy")
         {
+           // StopAllCoroutines();
+           //StartCoroutine(paintingTimeForRed());
             collision.gameObject.SetActive(false);
-            tr.material = red;
             score--;
             scoreText.text = score.ToString();
-            player.GetComponent<PlayerController>().moveSpeed-=0.1f;
         }
+    }
+
+
+     IEnumerator paintingTimeForGreen()
+    {
+        timeForGreen += 1f;
+        paintObj.enabled = true;
+        paintObj.brush = greenSplashObject;
+        yield return new WaitForSeconds(timeForGreen);
+        paintObj.enabled = false;
+        paintObj.brush = null;
+        timeForGreen = 0f;
+    }
+    IEnumerator paintingTimeForRed()
+    {
+        timeForRed += 1f;
+        paintObj.enabled = true;
+        paintObj.brush = redSplashObject;
+        yield return new WaitForSeconds(timeForRed);
+        paintObj.enabled = false;
+        paintObj.brush = null;
+        timeForRed = 0;
+
     }
 
     IEnumerator reloadGame()

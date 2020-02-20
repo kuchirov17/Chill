@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SphereHandler : MonoBehaviour
+public class followPlayer : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public GameObject player;
     void Start()
     {
         
@@ -13,6 +13,7 @@ public class SphereHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        transform.position = player.transform.position;
+        transform.rotation = player.transform.rotation;
     }
 }

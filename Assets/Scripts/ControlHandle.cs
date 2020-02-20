@@ -1,42 +1,47 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 public class ControlHandle: MonoBehaviour, IDragHandler,IEndDragHandler
 {
-    public bool left;
-    public bool right;
     public GameObject player;
-    float dragDistance = Screen.height*20/100;
+    float dragDistance = Screen.width*20/100;
+    public PlayerController pC;
 
 
     public void OnDrag(PointerEventData eventData)
     {
+
         if (Mathf.Abs(eventData.delta.x) > Mathf.Abs(eventData.delta.y))
-
         {
-            
-            if (eventData.delta.x > 10)
+            if (eventData.delta.x > dragDistance*0.025f)
             {
-                Debug.Log("Right");
-                player.GetComponent<PlayerController>().rotation = 1;
-            }
-            else if(eventData.delta.x < -10)
-            {
-                Debug.Log("Left");
-                player.GetComponent<PlayerController>().rotation = -1;
+                pC.direction = 1;
+                pC.rotationSpeed += 15f;
+               
             }
 
+            else if(eventData.delta.x < -dragDistance*0.025f)
+            {
+                pC.direction = -1;
+                pC.rotationSpeed += 15f;
+
+            }
 
         }
+
+
     }
 
+ 
     public void OnEndDrag(PointerEventData eventData)
     {
-        player.GetComponent<PlayerController>().rotation = 0;
-
-
+        pC.direction = 0;
+        //player.GetComponent<PlayerController>().rotationSpeed = 0;
     }
 
+
+
 }
+
+   
+

@@ -8,7 +8,7 @@ public class Transforms : MonoBehaviour
 
        private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.tag == "Player")
+            if (other.gameObject.tag == "PlayerPos")
             {
                 isVisible = true;
                 Debug.Log("isVisible");
@@ -17,7 +17,7 @@ public class Transforms : MonoBehaviour
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.gameObject.tag == "Player")
+            if (other.gameObject.tag == "PlayerPos")
             {
                 isVisible = false;
                 Debug.Log("isnt Visible");
