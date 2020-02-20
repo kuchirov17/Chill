@@ -203,7 +203,7 @@ GameObject:
   - component: {fileID: 117356703}
   m_Layer: 5
   m_Name: LoseText
-  m_TagString: Untagged
+  m_TagString: LoseText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -283,7 +283,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &396776278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -519,9 +519,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee21f3ec06fde484ba2a4a0717c61675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brush: {fileID: 2660214005051219847, guid: 31b9f5d1a5f0f654f89f6fe75fdf0a05, type: 3}
+  brush: {fileID: 4537031260973768443, guid: 5e1ea9bee21fa7a49a2fe782bd425a78, type: 3}
   player: {fileID: 1958786317}
   playerCollision: {fileID: 1958786326}
+  loseText: {fileID: 117356701}
+  GameOver: 0
 --- !u!1 &1064103548
 GameObject:
   m_ObjectHideFlags: 0
@@ -539,7 +541,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1064103549
 RectTransform:
   m_ObjectHideFlags: 0
@@ -874,7 +876,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1777716781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1110,7 +1112,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.49
+  m_Radius: 0.485
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1891612261
 MeshRenderer:
@@ -1280,7 +1282,7 @@ GameObject:
   - component: {fileID: 1958786326}
   m_Layer: 2
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1377,7 +1379,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1958786317}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}

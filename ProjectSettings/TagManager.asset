@@ -9,6 +9,7 @@ TagManager:
   - position
   - PlayerPos
   - PlayerTrigger
+  - LoseText
   layers:
   - Default
   - TransparentFX
