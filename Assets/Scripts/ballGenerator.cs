@@ -9,6 +9,7 @@ public class ballGenerator : MonoBehaviour
     public float time;
 
     public GameObject player;
+    public GameObject parentPositions;
     Vector3 instancePos;
 
     public GameObject transforms;

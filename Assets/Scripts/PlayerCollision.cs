@@ -9,7 +9,6 @@ public class PlayerCollision : MonoBehaviour
     private Text scoreText;
     public GameObject player;
     public GameObject cam;
-    public TrailRenderer tr;
     public GameObject loseText;
     public GameObject SwipeField;
 
@@ -27,15 +26,13 @@ public class PlayerCollision : MonoBehaviour
 
     private void Update()
     {
-        if (tr.time <= 0)
-        {
-            StartCoroutine(reloadGame());
-            SwipeField.SetActive(false);     
-        }
         if (score < 0)
         {
             score = 0;
             scoreText.text = score.ToString();
+            player.GetComponent<PlayerController>().moveSpeed = 0;
+            StartCoroutine(reloadGame());
+            SwipeField.SetActive(false);
         }
     }
 
@@ -44,7 +41,6 @@ public class PlayerCollision : MonoBehaviour
         if (collision.gameObject.tag == "ball")
         {
             collision.gameObject.SetActive(false);
-            tr.material = green;
             score++;
             scoreText.text = score.ToString();
             player.GetComponent<PlayerController>().moveSpeed += 0.1f;
@@ -54,7 +50,6 @@ public class PlayerCollision : MonoBehaviour
         if (collision.gameObject.tag == "enemy")
         {
             collision.gameObject.SetActive(false);
-            tr.material = red;
             score--;
             scoreText.text = score.ToString();
             player.GetComponent<PlayerController>().moveSpeed-=0.1f;
